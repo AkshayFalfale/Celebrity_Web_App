@@ -1,0 +1,58 @@
+<div class="card" *ngIf ="!isHideDashboard">
+    <div class="card-body card-padding">
+        <!-- Header Row -->
+        <div class="row mb-3" style="background-color: lightblue; text-align: center;">
+                <h3>View Celebrities</h3>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <input type="text" class="form-control" pInputText maxlength="50"
+                placeholder="Search" />
+            </div>
+            <div class="col-sm-3">
+                <div class="d-grid gap-2 d-md-block">
+                    <button class="btn btn-primary  me-2" type="button" 
+                    (click)="addCelebrity()" >Add Celebrity</button>
+                    <button class="btn btn-primary" type="button">Export</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card" *ngIf ="!isHideDashboard">
+    <div class="row" style="background-color: lightyellow; text-align: center;">
+        <H5>Best Time to attend party at 7 o clock</H5>
+    </div>
+</div>
+<div class="card" *ngIf ="!isHideDashboard">
+    <p-table [value]="viewCelebrityGrid"
+        [selectionPageOnly]="true"
+        [tableStyle]="{'min-width': '70rem', 'height':'300px'}"
+        styleClass="p-datatable-gridlines p-datatable-sm custom-table"
+        [scrollable]="true" scrollHeight="500px" [resizableColumns]="true" columnResizeMode="expand">
+        
+        <ng-template pTemplate="header">
+            <tr class="custom-header">
+                <th pResizableColumn style="width:20%;">Name</th>
+                <th pResizableColumn style="width:20%;">Email</th>
+                <th pResizableColumn style="width:20%;">Address</th>
+                <th pResizableColumn style="width:20%;">Actors</th>
+                <th pResizableColumn style="width:20%;">Time</th>
+                <th pResizableColumn style="width:20%;">Action</th>
+            </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+            <tr class="custom-row">
+                <td>{{ rowData.actualPurchaseOrderDate }}</td>
+                <td>{{ rowData.actualPurchaseOrderNumber }}</td>
+                <td>{{ rowData.purchaseOrderNumber }}</td>
+                <td>{{ rowData.actualPoQuantity }}</td>
+                <td>{{ rowData.totalAmount }}</td>
+                <td>{{ rowData.statusName }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<app-celebrity-form *ngIf ="isHideDashboard" ></app-celebrity-form>
+<!-- (onBackRedirectViewCelebrity)="hideCelebrityForm()" -->
